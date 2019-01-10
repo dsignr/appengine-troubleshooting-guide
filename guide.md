@@ -28,3 +28,11 @@ If you get this error, deploy a new service by using `service: abc` in your `app
 ERROR: (gcloud.app.deploy) Permissions error fetching application [apps/xxx-yyy-zzz]. Please make sure you are using the correct project ID and that you have permission to view applications on the project.
 ```
 If you get this error, then head over to the IAM page and set the necessary permissions for the service account that's throwing this error (Eg. Cloud Build).
+
+4. You get this error:
+```
+ERROR: context deadline exceeded appengine
+```
+This happens because the cloud build is failing after waiting for `x` number of seconds. AppEngine works by setting up a cloud build step under the hood. Once you understand this, the solution becomes pretty simple. In your `cloudbuild.yaml` file, set the `timeout` to whatever it takes. Or, if you don't use cloudbuild, you can pass this before you run `gcloud app deploy` on your machine:
+
+`gcloud config set app/cloud_build_timeout [NUMBER OF SECONDS]`
