@@ -1,6 +1,6 @@
-### Troubleshooting AppEngine
+## Troubleshooting AppEngine
 
-1. Enable manual scaling:
+### 1. Enable manual scaling:
 ```
 manual_scaling:
   instances: 1
@@ -16,20 +16,20 @@ manual_scaling:
 gcloud app deploy
 ```
 
-2. You get this error:
+### 2. You get this error:
 ```
 ERROR: (gcloud.app.deploy) Error Response: [4] Timed out waiting for the app infrastructure to become healthy.
 ```
 If you get this error, deploy a new service by using `service: abc` in your `app.yaml`.
 
 
-3. You get this error:
+### 3. You get this error:
 ```
 ERROR: (gcloud.app.deploy) Permissions error fetching application [apps/xxx-yyy-zzz]. Please make sure you are using the correct project ID and that you have permission to view applications on the project.
 ```
 If you get this error, then head over to the IAM page and set the necessary permissions for the service account that's throwing this error (Eg. Cloud Build).
 
-4. You get this error:
+### 4. You get this error:
 ```
 ERROR: context deadline exceeded appengine
 ```
@@ -37,7 +37,8 @@ This happens because the cloud build is failing after waiting for `x` number of 
 
 `gcloud config set app/cloud_build_timeout [NUMBER OF SECONDS]`
 
-5. Elixir Runtime - Your assets aren't working or throwing up a 404 from within the application.
+### 5. Elixir Runtime - Your assets aren't working or throwing up a 404 from within the application.
+
 For example, a file `index.html` inside `priv/static` isn't being picked up from inside the controller to be rendered (Eg. usecase: SPA). 
 
 This happens because AppEngine uses some complicated internal methodology to organize assets that shows up to the nginx server, but doesn't work from within the Elixir application. This is descibed in https://github.com/GoogleCloudPlatform/elixir-runtime at the time of this edit.
