@@ -56,7 +56,7 @@ entrypoint: mix phx.server
 ```
 That's it.
 
-### 4. You get this error:
+### 6. You get this error:
 ```
 (gcloud.app.deploy) Permissions error fetching application
 ```
