@@ -56,3 +56,9 @@ entrypoint: mix phx.server
 ```
 That's it.
 
+### 4. You get this error:
+```
+(gcloud.app.deploy) Permissions error fetching application
+```
+Go to CloudBuild settings page and enable AppEngine from there.
+
