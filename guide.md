@@ -62,3 +62,11 @@ That's it.
 ```
 Go to CloudBuild settings page and enable AppEngine from there.
 
+### 7. Internal server error:
+```
+Internal server error
+```
+If you get an internal server error during deployment (and not after), it means something is misconfigured inside your project.
+Go to the API Lenny in the console, search for appengine disable and enable again the API. It should fix the problem.
+If not, try the same process but delete the appengine flex service account before service-<project number>@gae-api-prod.google.com.iam.gserviceaccount.com
+If it still doesn't work, delete also the default service in appengine component.
