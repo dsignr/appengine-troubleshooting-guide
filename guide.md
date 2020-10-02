@@ -70,3 +70,14 @@ If you get an internal server error during deployment (and not after), it means 
 Go to the API Lenny in the console, search for appengine disable and enable again the API. It should fix the problem.
 If not, try the same process but delete the appengine flex service account before service-<project number>@gae-api-prod.google.com.iam.gserviceaccount.com
 If it still doesn't work, delete also the default service in appengine component.
+
+### 8. Can't connect to CloudSQL:
+Make sure in your application (Eg. Phoenix), you use socket DIR to talk to the database.
+Inside your `app.yaml`:
+env_variables:
+  DB_USERNAME: <username>
+  DB_PASSWORD: <password>
+  DB_NAME: <db name>
+  DB_SOCKET: /cloudsql/<instance name>:<region>:<db name>
+Note - Recent AppEngine versions seem to prefix the `/.s.PSQL.5432` to your socket URL, so you don't need to add it yourself.
+Next, make sure CloudSQL Admin API is enabled and your AppEngine service accounts (2 of them - except the standard environment one) have CloudSQL Admin role.
